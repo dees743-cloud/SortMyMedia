@@ -22,6 +22,8 @@ It reads EXIF and QuickTime metadata, detects creation dates, and sorts your med
 - Eliminated false NO_DATE cases
 - Faster and more reliable processing
 - More robust HEIC date extraction
+- ExifTool is now included directly in the ZIP (no installation required) ← new
+
 
 🏎️ Performance
 SortMyMedia outperforms similar tools thanks to its fully parallelized file processing.
