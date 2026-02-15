@@ -41,6 +41,7 @@
             listBox1 = new ListBox();
             labelSortMode = new Label();
             comboSortMode = new ComboBox();
+            lblTimer = new Label();
             SuspendLayout();
             // 
             // label1
@@ -149,11 +150,21 @@
             comboSortMode.TabIndex = 11;
             comboSortMode.SelectedIndexChanged += comboSortMode_SelectedIndexChanged;
             // 
+            // lblTimer
+            // 
+            lblTimer.AutoSize = true;
+            lblTimer.Location = new Point(693, 195);
+            lblTimer.Name = "lblTimer";
+            lblTimer.Size = new Size(95, 15);
+            lblTimer.TabIndex = 12;
+            lblTimer.Text = "Elapsed: 00:00:00";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblTimer);
             Controls.Add(comboSortMode);
             Controls.Add(labelSortMode);
             Controls.Add(listBox1);
@@ -187,5 +198,6 @@
         private ListBox listBox1;
         private Label labelSortMode;
         private ComboBox comboSortMode;
+        private Label lblTimer;
     }
 }
