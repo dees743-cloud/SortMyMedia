@@ -1,6 +1,14 @@
 📜 Changelog
 All notable changes to SortMyMedia will be documented in this file.
 
+🟦 [1.1.1] – 2026‑02‑15
+🛠️ Fixed
+- Updated UI language:
+- “Sorteren op” → “Sort by”
+- “per dag / per maand” → “by day / by month”
+- No functional changes
+- Stability‑only update
+
 🟦 [1.1] – 2026‑02‑15
 ✨ Added
 - Support for Google Takeout .supplemental-metadata.json files
