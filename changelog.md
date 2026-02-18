@@ -6,6 +6,11 @@ All notable changes to SortMyMedia will be documented in this file.
 -	Full and reliable HEIC metadata extraction now works as intended
 - ExifTool dependency clarified:  and the  directory are now included in the ZIP
 - Improved documentation to prevent incorrect NO_DATE results in the future
+- Added new TestEngine for safe performance experimentation without affecting ClassicEngine.
+- Replaced `Directory.GetFiles` with `Directory.EnumerateFiles` for faster file discovery and reduced memory usage.
+- Implemented `HashSet<string>` for efficient extension filtering.
+- Improved multithreaded processing stability and throughput.
+
 🛠️ Fixed
 - Critical issue where ExifTool could not run because the required  directory was missing
 - HEIC files incorrectly ending up in 
