@@ -1,3 +1,30 @@
+<p align="left">
+
+  <!-- Version badge -->
+  <a href="https://github.com/dees743-cloud/SortMyMedia/releases/latest">
+    <img src="https://img.shields.io/github/v/release/dees743-cloud/SortMyMedia?color=blue&label=Version&style=for-the-badge" alt="Latest Version">
+  </a>
+
+  <!-- Downloads badge -->
+  <a href="https://github.com/dees743-cloud/SortMyMedia/releases">
+    <img src="https://img.shields.io/github/downloads/dees743-cloud/SortMyMedia/total?color=brightgreen&label=Downloads&style=for-the-badge" alt="Downloads">
+  </a>
+
+  <!-- .NET badge -->
+  <img src="https://img.shields.io/badge/.NET-6%2B-purple?style=for-the-badge" alt=".NET 6+">
+
+  <!-- License badge -->
+  <a href="https://github.com/dees743-cloud/SortMyMedia/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="MIT License">
+  </a>
+
+  <!-- Changelog badge -->
+  <a href="https://github.com/dees743-cloud/SortMyMedia/blob/main/CHANGELOG.md">
+    <img src="https://img.shields.io/badge/Changelog-View-blue?style=for-the-badge" alt="Changelog">
+  </a>
+
+</p>
+
 📦 SortMyMedia
 SortMyMedia is a fast, multithreaded Windows application that automatically organizes your photos and videos into clean, structured folders.
 It reads EXIF and QuickTime metadata, detects creation dates, and sorts your media by day or by month, while keeping photos and videos in separate folders for maximum clarity.
