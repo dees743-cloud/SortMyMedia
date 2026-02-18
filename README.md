@@ -84,7 +84,7 @@ exiftool.exe
 exiftool_files\   (the entire folder)
 Without the exiftool_files directory, ExifTool cannot start.
 
-🏎️ Performance
+🏎️ Performance  
 SortMyMedia outperforms similar tools thanks to its fully parallelized file processing.
 Example benchmark on 31GB of mixed media:
 - Competing tool: 15m 20s
