@@ -135,17 +135,16 @@
             labelSortMode.AutoSize = true;
             labelSortMode.Location = new Point(75, 85);
             labelSortMode.Name = "labelSortMode";
-            labelSortMode.Size = new Size(91, 15);
+            labelSortMode.Size = new Size(71, 15);
             labelSortMode.TabIndex = 10;
-            labelSortMode.Text = "Folder Structure";
-            labelSortMode.Click += labelSortMode_Click;
+            labelSortMode.Text = "Sorteren op:";
             // 
             // comboSortMode
             // 
             comboSortMode.DropDownStyle = ComboBoxStyle.DropDownList;
             comboSortMode.FormattingEnabled = true;
-            comboSortMode.Items.AddRange(new object[] { "daily", "monthly" });
-            comboSortMode.Location = new Point(172, 77);
+            comboSortMode.Items.AddRange(new object[] { "Per dag", "Per maand" });
+            comboSortMode.Location = new Point(155, 82);
             comboSortMode.Name = "comboSortMode";
             comboSortMode.Size = new Size(150, 23);
             comboSortMode.TabIndex = 11;

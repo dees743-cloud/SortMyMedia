@@ -163,10 +163,5 @@ namespace SortMyMedia
         {
             lblTimer.Text = "Elapsed: " + stopwatch.Elapsed.ToString(@"hh\:mm\:ss");
         }
-
-        private void labelSortMode_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
