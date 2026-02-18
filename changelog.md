@@ -1,6 +1,17 @@
 📜 Changelog
 All notable changes to SortMyMedia will be documented in this file.
 
+🟦 [1.2.0] – 2026‑02‑18 ✨ Added / 🛠️ Fixed
+✨ Added
+• 	Full and reliable HEIC metadata extraction now works as intended
+• 	ExifTool dependency clarified:  and the  directory are now included in the ZIP
+• 	Improved documentation to prevent incorrect NO_DATE results in the future
+🛠️ Fixed
+• 	Critical issue where ExifTool could not run because the required  directory was missing
+• 	HEIC files incorrectly ending up in 
+• 	Fallback system now only triggers when ExifTool truly cannot extract metadata
+• 	Only genuinely problematic files (e.g., corrupted or 0 KB) end up in 
+
 🟦 [1.1.1] – 2026‑02‑15
 🛠️ Fixed
 - Updated UI language:
