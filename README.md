@@ -10,16 +10,16 @@
     <img src="https://img.shields.io/github/downloads/dees743-cloud/SortMyMedia/total?color=brightgreen&label=Downloads&style=for-the-badge" alt="Downloads">
   </a>
 
-  <!-- .NET badge -->
+  <!-- .NET badge (no link, this is normal) -->
   <img src="https://img.shields.io/badge/.NET-6%2B-purple?style=for-the-badge" alt=".NET 6+">
 
   <!-- License badge -->
-  <a href="https://github.com/dees743-cloud/SortMyMedia/blob/main/LICENSE">
+  <a href="https://github.com/dees743-cloud/SortMyMedia/blob/master/LICENSE.txt">
     <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="MIT License">
   </a>
 
   <!-- Changelog badge -->
-  <a href="https://github.com/dees743-cloud/SortMyMedia/blob/main/CHANGELOG.md">
+  <a href="https://github.com/dees743-cloud/SortMyMedia/blob/master/CHANGELOG.md">
     <img src="https://img.shields.io/badge/Changelog-View-blue?style=for-the-badge" alt="Changelog">
   </a>
 
