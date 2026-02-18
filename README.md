@@ -71,6 +71,10 @@ This update resolves a critical issue where ExifTool could not run correctly bec
 ✔ What’s fixed
 - ExifTool now runs correctly for all supported formats
 - HEIC metadata is fully and reliably extracted
+- Added new TestEngine for performance experimentation.
+- Replaced `Directory.GetFiles` with `Directory.EnumerateFiles` for faster file discovery and reduced memory usage.
+- Implemented `HashSet<string>` for efficient extension filtering.
+- Improved multithreaded processing stability.
 - Files that previously ended up incorrectly in the NO_DATE folder (especially HEIC) are now processed correctly
 - The fallback system is only used when ExifTool truly cannot extract metadata
 - Only genuinely problematic files (e.g., corrupted or 0 KB files) end up in NO_DATE
@@ -86,6 +90,7 @@ Example benchmark on 31GB of mixed media:
 - Competing tool: 15m 20s
 - SortMyMedia v1.0: 12m 36s
 - SortMyMedia V1.1 (with JSON fallback): ~14 minutes, but 100% accurate
+- SortMyMedia V1.2 (with JSON fallback & faster file discovery and reduced memory usage) : 11m 17s
 
 📦 Download
 Download the latest version here:
