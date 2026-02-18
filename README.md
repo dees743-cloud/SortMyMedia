@@ -23,6 +23,14 @@
     <img src="https://img.shields.io/badge/Changelog-View-blue?style=for-the-badge" alt="Changelog">
   </a>
 
+  <img src="https://img.shields.io/badge/Made%20in-Belgium 🇧🇪-red?style=for-the-badge" alt="Made in Belgium">
+
+  <img src="https://img.shields.io/badge/HEIC-Supported-blueviolet?style=for-the-badge" alt="HEIC Supported">
+
+  <img src="https://img.shields.io/badge/Engine-Multithreaded-orange?style=for-the-badge" alt="Multithreaded Engine">
+
+  <img src="https://img.shields.io/badge/UI-Windows%2010%2F11%20Modern-lightgrey?style=for-the-badge" alt="Modern Windows UI">
+
 </p>
 
 📦 SortMyMedia
