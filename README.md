@@ -19,7 +19,7 @@
   </a>
 
   <!-- Changelog badge -->
-  <a href="https://github.com/dees743-cloud/SortMyMedia/blob/master/CHANGELOG.md">
+  <a href="https://github.com/dees743-cloud/SortMyMedia/blob/master/changelog.md">
     <img src="https://img.shields.io/badge/Changelog-View-blue?style=for-the-badge" alt="Changelog">
   </a>
 
