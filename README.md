@@ -3,7 +3,6 @@ SortMyMedia is a fast, multithreaded Windows application that automatically orga
 It reads EXIF and QuickTime metadata, detects creation dates, and sorts your media by day or by month, while keeping photos and videos in separate folders for maximum clarity.
 
 
-
 ✨ Features
 - 🚀 High‑performance sorting using parallel processing
 - 🗂️ Automatic folder structure (photos/videos → year → month/day)
@@ -31,6 +30,20 @@ It reads EXIF and QuickTime metadata, detects creation dates, and sorts your med
 - “per dag / per maand” → “by day / by month”
 - No functional changes
 - Stability‑only update
+
+🆕 Version 1.2.0 – HEIC Metadata Fix
+This update resolves a critical issue where ExifTool could not run correctly because the required exiftool_files directory was missing.
+✔ What’s fixed
+- ExifTool now runs correctly for all supported formats
+- HEIC metadata is fully and reliably extracted
+- Files that previously ended up incorrectly in the NO_DATE folder (especially HEIC) are now processed correctly
+- The fallback system is only used when ExifTool truly cannot extract metadata
+- Only genuinely problematic files (e.g., corrupted or 0 KB files) end up in NO_DATE
+✔ Important note
+To ensure proper functionality, both of the following must be placed next to SortMyMedia.exe:
+exiftool.exe
+exiftool_files\   (the entire folder)
+Without the exiftool_files directory, ExifTool cannot start.
 
 🏎️ Performance
 SortMyMedia outperforms similar tools thanks to its fully parallelized file processing.
