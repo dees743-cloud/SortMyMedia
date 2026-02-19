@@ -12,18 +12,7 @@ using Newtonsoft.Json;
 
 namespace SortMyMedia.Engines
 {
-    public class GoogleJsonMeta
-    {
-        public GoogleJsonTimestamp? photoTakenTime { get; set; }
-        public GoogleJsonTimestamp? creationTime { get; set; }
-    }
-
-    public class GoogleJsonTimestamp
-    {
-        public string? timestamp { get; set; }
-    }
-
-    public class ClassicEngine : IProcessingEngine
+    public class TestEngine : IProcessingEngine
     {
         private enum SortMode { PerDay, PerMonth }
         private SortMode currentSortMode = SortMode.PerDay;
@@ -43,24 +32,21 @@ namespace SortMyMedia.Engines
             Action<string> log,
             Action<int> progress)
         {
-            // Snellere extensie-check met HashSet
             var exts = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-    {
-        ".jpg", ".jpeg", ".png", ".tif", ".tiff", ".webp",
-        ".mp4", ".mov", ".m4v",
-        ".heic", ".heif"
-    };
+            {
+                ".jpg", ".jpeg", ".png", ".tif", ".tiff", ".webp",
+                ".mp4", ".mov", ".m4v",
+                ".heic", ".heif"
+            };
 
-            // EnumerateFiles = sneller + minder RAM
             var files = System.IO.Directory.EnumerateFiles(inputFolder, "*.*", SearchOption.AllDirectories)
                                  .Where(f => exts.Contains(Path.GetExtension(f)))
                                  .ToList();
 
-
             int totalFiles = files.Count;
             int processedFiles = 0;
 
-            log($"Processing all files in C# (multithreaded)… ({totalFiles} files)");
+            log($"Processing all files in TEST ENGINE (EnumerateFiles)… ({totalFiles} files)");
 
             Parallel.ForEach(files, new ParallelOptions
             {
@@ -81,7 +67,7 @@ namespace SortMyMedia.Engines
                 progress(pct);
             });
 
-            log("All processing done.");
+            log("All processing done (TestEngine).");
         }
 
         private void ProcessSingleFile(string filePath, string outputFolder, Action<string> log)
@@ -90,30 +76,27 @@ namespace SortMyMedia.Engines
             bool isVideo = ext == ".mp4" || ext == ".mov" || ext == ".m4v";
             bool isHeic = ext == ".heic" || ext == ".heif";
 
-            // 1️⃣ EXIF / QuickTime / HEIC proberen
             DateTime? date = isHeic ? GetHeicDateViaExifTool(filePath) : GetMetadataDate(filePath);
 
-            // Bepaal of de EXIF/QuickTime-datum ongeldig is
             bool invalidExif = date == null || date.Value.Year < 1900 || date.Value.Year == 1904;
 
-            // 2️⃣ JSON fallback ook gebruiken als EXIF/QuickTime ongeldig is
             if (invalidExif && TryGetDateFromJson(filePath, out DateTime jsonDate))
             {
                 date = jsonDate;
             }
 
-            // 3️⃣ NO_DATE als er nog steeds geen bruikbare datum is
             if (date == null || date.Value.Year < 1900 || date.Value.Year == 1904)
             {
                 string noDateFolder = Path.Combine(outputFolder, "NO_DATE");
                 System.IO.Directory.CreateDirectory(noDateFolder);
-                File.Copy(filePath, Path.Combine(noDateFolder, Path.GetFileName(filePath)), true);
+
+                string destNoDate = Path.Combine(noDateFolder, Path.GetFileName(filePath));
+                File.Copy(filePath, destNoDate, true);
 
                 log($"NO DATE → {Path.GetFileName(filePath)}");
                 return;
             }
 
-            // 4️⃣ Normale verwerking
             string typeFolder = isVideo ? "videos" : "photos";
             string year = date.Value.ToString("yyyy");
 
@@ -124,7 +107,8 @@ namespace SortMyMedia.Engines
             string targetFolder = Path.Combine(outputFolder, typeFolder, year, subfolder);
             System.IO.Directory.CreateDirectory(targetFolder);
 
-            File.Copy(filePath, Path.Combine(targetFolder, Path.GetFileName(filePath)), true);
+            string dest = Path.Combine(targetFolder, Path.GetFileName(filePath));
+            File.Copy(filePath, dest, true);
 
             log($"{Path.GetFileName(filePath)} → {typeFolder}\\{year}\\{subfolder}");
         }
@@ -133,10 +117,9 @@ namespace SortMyMedia.Engines
         {
             string folder = Path.GetDirectoryName(filePath)!;
 
-            string fileName = Path.GetFileNameWithoutExtension(filePath);     // bv. 1000001392
-            string fileNameWithExt = Path.GetFileName(filePath);              // bv. 1000001392.mp4
+            string fileName = Path.GetFileNameWithoutExtension(filePath);
+            string fileNameWithExt = Path.GetFileName(filePath);
 
-            // Prefix van max 25 chars (jouw bestaande logica)
             int prefixLength = Math.Min(25, fileName.Length);
             string prefix = fileName.Substring(0, prefixLength);
 
@@ -146,17 +129,12 @@ namespace SortMyMedia.Engines
             {
                 string jsonName = Path.GetFileNameWithoutExtension(json);
 
-                // 1️⃣ Google Takeout stijl:
-                //    1000001392.mp4.supplemental-metadata.json
                 if (jsonName.StartsWith(fileNameWithExt, StringComparison.OrdinalIgnoreCase))
                     return json;
 
-                // 2️⃣ Exacte match op filename zonder extensie
-                //    1000001392.json
                 if (jsonName.Equals(fileName, StringComparison.OrdinalIgnoreCase))
                     return json;
 
-                // 3️⃣ Prefix match (fallback)
                 if (jsonName.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
                     return json;
             }
@@ -177,7 +155,6 @@ namespace SortMyMedia.Engines
                 string json = File.ReadAllText(jsonPath);
                 var data = JsonConvert.DeserializeObject<GoogleJsonMeta>(json);
 
-                // photoTakenTime.timestamp
                 string? ts1 = data?.photoTakenTime?.timestamp?.Trim();
                 if (!string.IsNullOrEmpty(ts1) && long.TryParse(ts1, out long unix1))
                 {
@@ -185,7 +162,6 @@ namespace SortMyMedia.Engines
                     return true;
                 }
 
-                // creationTime.timestamp fallback
                 string? ts2 = data?.creationTime?.timestamp?.Trim();
                 if (!string.IsNullOrEmpty(ts2) && long.TryParse(ts2, out long unix2))
                 {
