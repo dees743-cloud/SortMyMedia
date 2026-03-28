@@ -1,42 +1,42 @@
 <p align="left">
 
-  <!-- Version badge -->
-  <a href="https://github.com/dees743-cloud/SortMyMedia/releases/latest">
-    <img src="https://img.shields.io/github/v/release/dees743-cloud/SortMyMedia?color=blue&label=Version&style=for-the-badge" alt="Latest Version">
-  </a>
+<a href="https://github.com/dees743-cloud/SortMyMedia/releases/latest">
+<img src="https://img.shields.io/github/v/release/dees743-cloud/SortMyMedia?color=blue&label=Latest%20Version&style=for-the-badge" alt="Latest Version">
+</a>
 
-  <!-- Downloads badge -->
-  <a href="https://github.com/dees743-cloud/SortMyMedia/releases">
-    <img src="https://img.shields.io/github/downloads/dees743-cloud/SortMyMedia/total?color=brightgreen&label=Downloads&style=for-the-badge" alt="Downloads">
-  </a>
+<a href="https://github.com/dees743-cloud/SortMyMedia/releases">
+<img src="https://img.shields.io/github/downloads/dees743-cloud/SortMyMedia/total?color=brightgreen&label=Downloads&style=for-the-badge" alt="Downloads">
+</a>
 
-  <!-- .NET badge (no link, this is normal) -->
-  <img src="https://img.shields.io/badge/.NET-6%2B-purple?style=for-the-badge" alt=".NET 6+">
+<img src="https://img.shields.io/badge/.NET-10%20Required-purple?style=for-the-badge" alt=".NET 10">
 
-  <!-- License badge -->
-  <a href="https://github.com/dees743-cloud/SortMyMedia/blob/master/LICENSE.txt">
-    <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="MIT License">
-  </a>
+<a href="https://github.com/dees743-cloud/SortMyMedia/blob/master/LICENSE.txt">
+<img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="MIT License">
+</a>
 
-  <!-- Changelog badge -->
-  <a href="https://github.com/dees743-cloud/SortMyMedia/blob/master/changelog.md">
-    <img src="https://img.shields.io/badge/Changelog-View-blue?style=for-the-badge" alt="Changelog">
-  </a>
+<a href="https://github.com/dees743-cloud/SortMyMedia/blob/master/changelog.md">
+<img src="https://img.shields.io/badge/Changelog-View-blue?style=for-the-badge" alt="Changelog">
+</a>
 
-  <img src="https://img.shields.io/badge/Made%20in-Belgium 🇧🇪-red?style=for-the-badge" alt="Made in Belgium">
+<img src="https://img.shields.io/badge/Made%20in-Belgium 🇧🇪-red?style=for-the-badge" alt="Made in Belgium">
 
-  <img src="https://img.shields.io/badge/HEIC-Supported-blueviolet?style=for-the-badge" alt="HEIC Supported">
+<img src="https://img.shields.io/badge/HEIC-Supported-blueviolet?style=for-the-badge" alt="HEIC Supported">
 
-  <img src="https://img.shields.io/badge/Engine-Multithreaded-orange?style=for-the-badge" alt="Multithreaded Engine">
+<img src="https://img.shields.io/badge/Engine-Multithreaded-orange?style=for-the-badge" alt="Multithreaded Engine">
 
-  <img src="https://img.shields.io/badge/UI-Windows%2010%2F11%20Modern-lightgrey?style=for-the-badge" alt="Modern Windows UI">
+<img src="https://img.shields.io/badge/UI-Windows%2010%2F11%20Modern-lightgrey?style=for-the-badge" alt="Modern Windows UI">
 
 </p>
 
 📦 SortMyMedia
 SortMyMedia is a fast, multithreaded Windows application that automatically organizes your photos and videos into clean, structured folders.
-It reads EXIF and QuickTime metadata, detects creation dates, and sorts your media by day or by month, while keeping photos and videos in separate folders for maximum clarity.
+Starting with version 2.0, SortMyMedia now includes three powerful modes:
 
+- Sort Mode — automatic date‑based media organization
+
+- OCR Mode — extract text from images using PaddleOCR
+
+- Face Mode — detect, group, and organize photos by person using AdaFace + SCRFD
 
 ✨ Features
 - 🚀 High‑performance sorting using parallel processing
@@ -49,54 +49,86 @@ It reads EXIF and QuickTime metadata, detects creation dates, and sorts your med
 - 🎥 Separate photo/video output for clean organization
 - 🪟 Simple, clean Windows UI
 - 🔧 Supports JPG, PNG, TIFF, WEBP, MP4, MOV, M4V, HEIC, HEIF
+- 🆕 Version 2.0 — Major Upgrade
+- SortMyMedia 2.0 introduces two completely new AI-powered modes and a redesigned start screen.
 
-🚀 Version 1.1 Improvements
-- JSON fallback for invalid EXIF/QuickTime dates
-- Correct handling of Google Takeout .supplemental-metadata.json
-- Improved prefix matching for long filenames
-- Eliminated false NO_DATE cases
-- Faster and more reliable processing
-- More robust HEIC date extraction
-- ExifTool is now included directly in the ZIP (no installation required) ← new
+🤖 Face Mode (New in 2.0)
+- Face Mode detects faces, generates embeddings, groups people, and exports photos into per‑person folders.
+    🔍 Pipeline
+    - SCRFD face detection
+    - 5‑point alignment
+    - Quality filtering (sharpness, pose, detection score, skin detection)
+    - AdaFace IR‑101 embeddings
+    - Cosine‑distance clustering
+    - Interactive drag‑and‑drop UI
+    - Auto‑naming and per‑person folder export
 
-🛠️ Version 1.1.1 (UI Update)
-- Updated UI language:
-- “Sorteren op” → “Sort by”
-- “per dag / per maand” → “by day / by month”
-- No functional changes
-- Stability‑only update
+    🧠 Models Included
+    - det_500m_fixed.onnx (SCRFD detection)
+    - adaface_ir101_webface12m.onnx (AdaFace embeddings)
+    
+    ⚡ GPU Acceleration
+    - ONNX Runtime CUDA for detection & embedding
+    - CPU fallback automatically
 
-🆕 Version 1.2.0 – HEIC Metadata Fix
-This update resolves a critical issue where ExifTool could not run correctly because the required exiftool_files directory was missing.
-✔ What’s fixed
+🔤 OCR Mode (New in 2.0)
+-OCR Mode extracts text from images using a local PaddleOCR server.
+
+    📄 Output
+    - ocr/<filename>.txt
+    - ocr/<filename>.html (interactive bounding boxes)
+    
+    🧠 Powered by
+    - PaddleOCR (FastAPI server)
+    - Automatic language detection
+    - GPU acceleration when available
+
+🖥️ New Installer (New in 2.0)
+- SortMyMedia now includes a full Windows installer:
+- Installs .NET Desktop Runtime 10 automatically
+- Includes all ONNX models
+- Includes ExifTool
+- Creates Start Menu shortcuts
+- Includes an uninstaller
+- Portable ZIP version is still available.
+
+🧭 Version 1.2 — Still Available
+- Version 1.2 remains available for users who only need the classic sorting functionality.
+✔ What’s fixed in 1.2
 - ExifTool now runs correctly for all supported formats
-- HEIC metadata is fully and reliably extracted
-- Added new TestEngine for performance experimentation.
-- Replaced `Directory.GetFiles` with `Directory.EnumerateFiles` for faster file discovery and reduced memory usage.
-- Implemented `HashSet<string>` for efficient extension filtering.
-- Improved multithreaded processing stability.
-- Files that previously ended up incorrectly in the NO_DATE folder (especially HEIC) are now processed correctly
-- The fallback system is only used when ExifTool truly cannot extract metadata
-- Only genuinely problematic files (e.g., corrupted or 0 KB files) end up in NO_DATE
-✔ Important note
-To ensure proper functionality, both of the following must be placed next to SortMyMedia.exe:
-exiftool.exe
-exiftool_files\   (the entire folder)
-Without the exiftool_files directory, ExifTool cannot start.
+- HEIC metadata extraction fully reliable
+- Faster file discovery (EnumerateFiles)
+- Reduced memory usage
+- More stable multithreaded processing
+- Fewer NO_DATE cases
+- Only truly problematic files end up in NO_DATE
 
-🏎️ Performance  
-SortMyMedia outperforms similar tools thanks to its fully parallelized file processing.
-Example benchmark on 31GB of mixed media:
-- Competing tool: 15m 20s
-- SortMyMedia v1.0: 12m 36s
-- SortMyMedia V1.1 (with JSON fallback): ~14 minutes, but 100% accurate
-- SortMyMedia V1.2 (with JSON fallback & faster file discovery and reduced memory usage) : 11m 17s
+⚠ Important
+To use SortMyMedia 1.2 correctly, the following must be placed next to SortMyMedia.exe:
+
+Code
+exiftool.exe
+exiftool_files\
+
+🏎️ Performance
+- SortMyMedia outperforms similar tools thanks to its fully parallelized engine.
+- 10,000 faces → ~45 seconds embedding on RTX 4060
+- Clustering < 1 second
 
 📦 Download
 Download the latest version here:
-👉 Releases → Latest (ZIP included
+👉 Releases → Latest
+
+Available formats:
+✔ Installer (recommended)
+SortMyMedia_v2.0_Setup.exe
+✔ Portable ZIP
+SortMyMedia-2.0.zip
+✔ Legacy version
+SortMyMedia-1.2.zip
 
 📁 Output Structure
+Code
 photos/
    2024/
       2024-08-15/
@@ -104,11 +136,29 @@ videos/
    2023/
       2023-11/
 NO_DATE/
+Face Mode output:
 
-📁 📦 Requirements
-- Windows 10/11  
-- .NET 6+  
-- ExifTool
+Code
+People/
+   John/
+   Sarah/
+   Unknown Faces/
+OCR Mode output:
+
+Code
+ocr/
+   image1.txt
+   image1.html
+📦 Requirements
+- Version 2.0
+  - Windows 10/11
+  - .NET Desktop Runtime 10 (installed automatically by the installer)
+  - PaddleOCR server (for OCR Mode only)
+
+- Version 1.2
+  - Windows 10/11
+  - .NET 6+
+  - Exiftool 
 
 📜 License
 MIT License
