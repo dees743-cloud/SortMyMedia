@@ -1,5 +1,41 @@
 📜 Changelog
-All notable changes to SortMyMedia will be documented in this file.
+All notable changes to SortMyMedia are documented in this file.
+
+🟦 [2.0.0] – 2026‑03‑XX
+✨ Added
+New Start Screen with three modes: Sort Mode, OCR Mode, Face Mode
+Face Mode (brand‑new):
+SCRFD face detection (det_500m_fixed.onnx)
+AdaFace IR‑101 embeddings (adaface_ir101_webface12m.onnx)
+5‑point face alignment
+Multi‑crop embedding for robustness
+Quality filtering (sharpness, pose, detection score, skin detection)
+GPU acceleration via ONNX Runtime CUDA
+Fully interactive clustering UI (drag & drop, merge, split, undo/redo)
+Automatic per‑person folder export
+OCR Mode (brand‑new):
+PaddleOCR FastAPI server integration
+.txt and interactive .html output with bounding boxes
+Automatic language detection
+GPU acceleration when available
+Full Windows Installer (Inno Setup):
+Automatic installation of .NET Desktop Runtime 10
+All ONNX models included
+ExifTool included
+Start Menu shortcuts
+Uninstaller
+Improved HEIC support via Magick.NET fallback
+New UI elements and modernized layout
+🛠️ Fixed
+More stable multithreaded processing across all modes
+Improved error handling for corrupted or unreadable images
+More robust handling of large datasets in Face Mode and Sort Mode
+
+⚡ Improved
+Faster file discovery
+More accurate metadata extraction
+Better fallback logic for missing EXIF/QuickTime metadata
+Higher accuracy in face clustering due to quality‑weighted embeddings
 
 🟦 [1.2.0] – 2026‑02‑18 ✨ Added / 🛠️ Fixed
 ✨ Added
